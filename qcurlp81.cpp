@@ -37,10 +37,9 @@ namespace qhashing{
 	}
 	quint8 curlP::get_TrailingZeros(void) const
 	{
-		const auto hash=get_hash();
 
 		quint8 var=0;
-		for(auto i=hash.size()-1;i>=0;i--)
+		for(auto i=242;i>=0;i--)
 		{
 			if(at(i)!=0)
 			{

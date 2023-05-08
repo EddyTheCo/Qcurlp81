@@ -5,8 +5,8 @@ project(testing VERSION 0.1 DESCRIPTION "diferent tests for the library" LANGUAG
 include(FetchContent)
 FetchContent_Declare(
         qb1t6
-        GIT_REPOSITORY git@github.com:EddyTheCo/Qb1t6.git
-        GIT_TAG main
+        GIT_REPOSITORY https://github.com/EddyTheCo/Qb1t6.git
+        GIT_TAG v0.0.1
         )
 FetchContent_MakeAvailable(qb1t6)
 

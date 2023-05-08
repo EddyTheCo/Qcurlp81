@@ -1,6 +1,5 @@
 #include"hashing/qcurlp81.hpp"
 #include"encoding/qb1t6.hpp"
-#include<iostream>
 #undef NDEBUG
 #include <assert.h>
 

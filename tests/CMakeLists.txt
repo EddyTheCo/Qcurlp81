@@ -16,15 +16,17 @@ FetchContent_MakeAvailable(qb1t6)
 endif(NOT qb1t6_FOUND AND NOT TARGET qb1t6)
 
 
-add_executable(tip12 tip12.cpp)
-target_link_libraries(tip12 PRIVATE qb1t6 qcurlp81)
-add_test(NAME tip12 COMMAND tip12)
+foreach(app  tip12)
+add_executable(${app} ${app}.cpp)
+target_link_libraries(${app} PRIVATE qb1t6 qcurlp81)
+add_test(NAME ${app} COMMAND ${app})
 
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(
-        TARGET  POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:tip12> $<TARGET_FILE_DIR:tip12>
+        TARGET ${app} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:${app}> $<TARGET_FILE_DIR:${app}>
         COMMAND_EXPAND_LISTS
     )
 endif ()
+endforeach()
 

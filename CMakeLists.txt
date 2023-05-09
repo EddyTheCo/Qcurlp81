@@ -4,7 +4,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 include(cmake/VersionFromGit.cmake)
 
 version_from_git(
-  LOG       ON
+	LOG       OFF
   TIMESTAMP "%Y%m%d%H%M%S"
 )
 project(Qtcurlp-81 VERSION ${VERSION} DESCRIPTION "simple IOTA-QT curl-p hashing" LANGUAGES CXX)

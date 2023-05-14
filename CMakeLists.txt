@@ -23,8 +23,9 @@ endif()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include(cmake/FindQt.cmake)
 
+find_package(Qt6 REQUIRED COMPONENTS Core)
+qt_standard_project_setup()
 add_library(qcurlp81 include/hashing/qcurlp81.hpp qcurlp81.cpp)
 
 target_link_libraries(qcurlp81 PUBLIC  Qt6::Core )

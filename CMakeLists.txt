@@ -33,11 +33,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 COMPONENTS Core)
+
+if (Qt6_FOUND)
 qt_standard_project_setup()
+endif(Qt6_FOUND)
 add_library(qcurlp81 include/hashing/qcurlp81.hpp qcurlp81.cpp)
 
+if (Qt6_FOUND)
 target_link_libraries(qcurlp81 PUBLIC  Qt6::Core )
+endif(Qt6_FOUND)
 
 target_include_directories(qcurlp81 PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 	"$<INSTALL_INTERFACE:include>")

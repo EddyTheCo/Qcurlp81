@@ -1,0 +1,5 @@
+name: push-build-release
+
+jobs:
+  configure-build-package-release:
+    uses: EddyTheCo/Qb1t6/.github/workflows/build-test-install.yml@v0.0.1

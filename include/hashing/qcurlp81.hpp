@@ -5,7 +5,6 @@
  **/
 
 #include<QByteArray>
-#include<QDebug>
 namespace qhashing{
     class curlP : public QByteArray
 	{

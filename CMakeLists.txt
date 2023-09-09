@@ -31,36 +31,34 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
+include(GNUInstallDirs)
 
 find_package(Qt6 COMPONENTS Core)
 
 if (Qt6_FOUND)
-qt_standard_project_setup()
+	qt_standard_project_setup()
 endif(Qt6_FOUND)
-add_library(qcurlp81 include/hashing/qcurlp81.hpp qcurlp81.cpp)
+add_library(qcurlp81 qcurlp81.cpp)
 
 if (Qt6_FOUND)
-target_link_libraries(qcurlp81 PUBLIC  Qt6::Core )
+	target_link_libraries(qcurlp81 PUBLIC  Qt6::Core )
 endif(Qt6_FOUND)
 
 target_include_directories(qcurlp81 PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-	"$<INSTALL_INTERFACE:include>")
+	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
-install(TARGETS qcurlp81 EXPORT qcurlp81Targets DESTINATION lib)
-install(DIRECTORY include/ DESTINATION include/)
+install(TARGETS qcurlp81 EXPORT qcurlp81Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(EXPORT qcurlp81Targets
 	FILE qcurlp81Targets.cmake
-	DESTINATION lib/cmake/qcurlp81
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qcurlp81
 	)
 include(CMakePackageConfigHelpers)
 # generate the config file that is includes the exports
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
 	"${CMAKE_CURRENT_BINARY_DIR}/qcurlp81Config.cmake"
-	INSTALL_DESTINATION "lib/cmake/qcurlp81"
-	NO_SET_AND_CHECK_MACRO
-	NO_CHECK_REQUIRED_COMPONENTS_MACRO
+	INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/qcurlp81"
 	)
 write_basic_package_version_file(
 	"${CMAKE_CURRENT_BINARY_DIR}/qcurlp81ConfigVersion.cmake"
@@ -70,13 +68,14 @@ write_basic_package_version_file(
 install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/qcurlp81Config.cmake
 	${CMAKE_CURRENT_BINARY_DIR}/qcurlp81ConfigVersion.cmake
-	DESTINATION lib/cmake/qcurlp81
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qcurlp81
 	)
 export(EXPORT qcurlp81Targets
 	FILE "${CMAKE_CURRENT_BINARY_DIR}/qcurlp81Targets.cmake"
 	)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+	set(CPACK_PACKAGE_CONTACT "estervtech")
 	include(CTest)
 	set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-v${SEMVER}-${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_VERSION}-${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_CXX_COMPILER_ID}")
 	if(NOT BUILD_SHARED_LIBS)

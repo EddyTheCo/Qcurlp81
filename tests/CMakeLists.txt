@@ -1,16 +1,12 @@
 
-find_package(qb1t6 0 QUIET )
-
-if(NOT qb1t6_FOUND AND NOT TARGET qb1t6)
-include(FetchContent)
+cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
 FetchContent_Declare(
         qb1t6
         GIT_REPOSITORY https://github.com/EddyTheCo/Qb1t6.git
-        GIT_TAG v0.0.1
+        GIT_TAG v0.0.2
+	FIND_PACKAGE_ARGS 0.0 CONFIG
         )
 FetchContent_MakeAvailable(qb1t6)
-endif(NOT qb1t6_FOUND AND NOT TARGET qb1t6)
-
 
 foreach(app  tip12)
 add_executable(${app} ${app}.cpp)

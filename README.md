@@ -34,8 +34,8 @@ include(FetchContent)
 FetchContent_Declare(
 	Qtcurlp81	
 	GIT_REPOSITORY https://github.com/EddyTheCo/Qcurlp81.git
-	GIT_TAG v0.1.0 
-	FIND_PACKAGE_ARGS 0.1 CONFIG  
+	GIT_TAG vMAJOR.MINOR.PATCH 
+	FIND_PACKAGE_ARGS MAJOR.MINOR CONFIG  
 	)
 FetchContent_MakeAvailable(Qtcurlp81)
 target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> Qtcurlp81::qcurlp81)

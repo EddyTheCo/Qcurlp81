@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.24)
 FetchContent_Declare(
         qb1t6
         GIT_REPOSITORY https://github.com/EddyTheCo/Qb1t6.git
